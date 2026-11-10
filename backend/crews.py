@@ -1,11 +1,14 @@
-from langchain_openai import ChatOpenAI
+from llm import create_llm
 from log_manager import append_event
 
 class TechnologyResearchCrew:
     def __init__(self, input_id: str):
         self.input_id = input_id
         self.crew = None
-        self.llm = ChatOpenAI(model="gpt-4-turbo-preview")
+        # Original version: ChatOpenAI(model="gpt-4-turbo-preview").
+        # That model has been shut down; llm.py explains the current model
+        # and the small adaptations this version of CrewAI needs.
+        self.llm = create_llm()
 
     def setup_crew(self, technologies: list[str], businessareas: list[str]):
         print(f"""Setting up crew for
